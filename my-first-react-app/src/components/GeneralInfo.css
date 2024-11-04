@@ -1,0 +1,22 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#ContentGeneralInfo{
+    background-color: gray;
+    padding: 1%;
+    border: 2px solid;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+#btnElement{
+    margin-top: 5%;
+}
+.formElements{
+    padding: 1.5%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-around;
+}
