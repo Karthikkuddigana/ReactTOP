@@ -1,5 +1,31 @@
 import { useEffect, useState } from "react";
+import Card from 'react-bootstrap/Card'; 
+import Button from 'react-bootstrap/Button'; 
 import "./GeneralInfo.css"; 
+
+function BasicExample(props) {
+    // details.map((details)=><div key={details.id}>
+    //                     <div>{details.username}</div>
+    //                     <div>{details.password}</div>
+    //                     </div>)
+    return (
+        props.details.map((details)=>
+            // <div key={details.id}>
+            // <div>{details.username}</div>
+            // <div>{details.password}</div>
+            // </div>)
+      <Card border="success" bg="success"style={{ width: '18rem' }} className=".bg-danger">
+        <Card.Img variant="top" src="holder.js/100px180" alt="tempImg"/>
+        <Card.Body>
+          <Card.Title>{details.username}</Card.Title>
+          <Card.Text>
+            {details.password}
+          </Card.Text>
+          <Button variant="primary">Go somewhere</Button>
+        </Card.Body>
+      </Card>)
+  )
+}
 function GeneralInfo(){
     const [dispState,myDispState]=useState(true); 
     const [nameState,setName]=useState(""); 
@@ -42,10 +68,7 @@ function GeneralInfo(){
                     <div className="formElements">
                         <button onClick={handleClick} type="submit" id="btnElement">Submit</button>
                     </div>
-                    {!isLoading && details.map((details)=><div key={details.id}>
-                        <div>{details.username}</div>
-                        <div>{details.password}</div>
-                        </div>)}
+                    {!isLoading && <div><BasicExample details={details}></BasicExample></div>}
                     {isLoading && <div>Still Loading</div>}
                 </div>
                 
