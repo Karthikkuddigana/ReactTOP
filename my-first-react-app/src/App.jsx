@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <GeneralInfo ></GeneralInfo>
-      <EducationalExperience></EducationalExperience>
+      {/* <EducationalExperience></EducationalExperience> */}
     </>
   )
 }

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./GeneralInfo.css"; 
 function GeneralInfo(){
     const [dispState,myDispState]=useState(true); 
     const [nameState,setName]=useState(""); 
     const [ageState, setAge]=useState(""); 
+    const [details,setDetails]=useState(); 
+    const [isLoading,setIsLoading]=useState(true); 
     const handleChangeName=(e)=>{
         setName(e.target.value)
     }
@@ -18,10 +20,17 @@ function GeneralInfo(){
         myDispState(true); 
 
     }
+    useEffect(()=>{fetch('https://fakestoreapi.com/users')
+    .then(res=>res.json())
+    .then((json)=>{
+        console.log(json); 
+        setDetails(json); 
+        setIsLoading(false); 
+    })},[]); 
     return (
         <>  
             {dispState && <div id="ContentGeneralInfo">
-                <form>
+                <div>
                     <div className="formElements">
                         <label htmlFor="Name">Name:</label>
                         <input type="text" id="Name" onChange={handleChangeName} value={nameState}required/>
@@ -33,7 +42,12 @@ function GeneralInfo(){
                     <div className="formElements">
                         <button onClick={handleClick} type="submit" id="btnElement">Submit</button>
                     </div>
-                </form>
+                    {!isLoading && details.map((details)=><div key={details.id}>
+                        <div>{details.username}</div>
+                        <div>{details.password}</div>
+                        </div>)}
+                    {isLoading && <div>Still Loading</div>}
+                </div>
                 
             </div>}
             {!dispState && 
