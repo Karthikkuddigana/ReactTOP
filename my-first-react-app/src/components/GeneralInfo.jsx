@@ -3,28 +3,28 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'; 
 import "./GeneralInfo.css"; 
 
-function BasicExample(props) {
+function BasicExample({details}) {
     // details.map((details)=><div key={details.id}>
     //                     <div>{details.username}</div>
     //                     <div>{details.password}</div>
     //                     </div>)
     return (
-        props.details.map((details)=>
+        // props.details.map((details)=>
             // <div key={details.id}>
             // <div>{details.username}</div>
             // <div>{details.password}</div>
             // </div>)
-      <Card border="success" bg="success"style={{ width: '18rem' }} className=".bg-danger">
-        <Card.Img variant="top" src="holder.js/100px180" alt="tempImg"/>
+      <Card border="success" bg="secondary"style={{ width: '20rem' }} className=".bg-danger">
+        <Card.Img variant="top" src={details.image} alt="tempImg" style={{ height: '10rem',objectFit: 'cover' }}/>
         <Card.Body>
-          <Card.Title>{details.username}</Card.Title>
+          <Card.Title>{details.title}</Card.Title>
           <Card.Text>
-            {details.password}
+            {details.price}
           </Card.Text>
           <Button variant="primary">Go somewhere</Button>
         </Card.Body>
       </Card>)
-  )
+//   )
 }
 function GeneralInfo(){
     const [dispState,myDispState]=useState(true); 
@@ -46,7 +46,7 @@ function GeneralInfo(){
         myDispState(true); 
 
     }
-    useEffect(()=>{fetch('https://fakestoreapi.com/users')
+    useEffect(()=>{fetch('https://fakestoreapi.com/products/3')
     .then(res=>res.json())
     .then((json)=>{
         console.log(json); 
